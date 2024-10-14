@@ -36,9 +36,13 @@
         </li>
       </ul>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900"
-          >Войти <span aria-hidden="true">&rarr;</span></a
+        <NuxtLink
+          to="/cart"
+          class="text-sm font-normal leading-6 text-gray-900"
         >
+          Корзина
+          <sup aria-hidden="true">({{ cartItems }})</sup>
+        </NuxtLink>
       </div>
     </nav>
   </header>
@@ -47,13 +51,22 @@
 <script setup>
 const menu = [
   {
-    link: "/",
-    name: "Домой",
+    link: "/catalog",
+    name: "Каталог",
   },
   {
     link: "/about",
     name: "О нас",
   },
+  {
+    link: "/delivery",
+    name: "Доставка",
+  },
+  {
+    link: "/contacts",
+    name: "Контакты",
+  },
 ];
 const mobileMenuOpen = ref(false);
+const cartItems = ref(3);
 </script>
