@@ -1,5 +1,5 @@
 <template>
-  <div class="grid min-h-screen">
+  <div class="grid min-h-screen relative items-start">
     <AppHeader />
     <div class="">
       <slot />

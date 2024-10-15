@@ -1,7 +1,32 @@
+<script setup>
+const list = ref([
+  {
+    name: "постельное белье",
+    slug: "bedclothes",
+  },
+  {
+    name: "скатерти",
+    slug: "tablecloth",
+  },
+  {
+    name: "полотенца",
+    slug: "towels",
+  },
+  {
+    name: "салфетки",
+    slug: "napkins",
+  },
+  {
+    name: "пледы",
+    slug: "blankets",
+  },
+]);
+</script>
+
 <template>
   <div class="categories max-w-screen-2xl p-6 lg:px-8">
-    <h2 class="text-4xl md:text-5xl mt-10">Категории</h2>
-    <div class="grid grid-cols-4 grid-rows-2 lg:mt-10 gap-2">
+    <h2 class="text-4xl md:text-4xl mt-10 text-gray-800">категории</h2>
+    <div class="grid grid-cols-4 grid-rows-2 lg:mt-4 gap-2">
       <NuxtLink
         :to="'/catalog/' + category.slug"
         v-for="category in list"
@@ -14,7 +39,9 @@
             alt=""
             class="categoryImage"
           />
-          <p class="categoryName text-3xl text-white ml-5">
+          <p
+            class="categoryName text-6xl font-thin text-white ml-5 top-3 absolute"
+          >
             {{ category.name }}
           </p>
         </div>
@@ -22,31 +49,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-const list = ref([
-  {
-    name: "Постельное белье",
-    slug: "bedclothes",
-  },
-  {
-    name: "Скатерти",
-    slug: "tablecloth",
-  },
-  {
-    name: "Полотенца",
-    slug: "towels",
-  },
-  {
-    name: "Салфетки",
-    slug: "napkins",
-  },
-  {
-    name: "Пледы",
-    slug: "blankets",
-  },
-]);
-</script>
 
 <style>
 .category {
@@ -56,13 +58,15 @@ const list = ref([
 
   &:hover {
     .categoryImage {
-      transform: scale(1.05);
+      transform: scale(1.02);
+    }
+    .categoryName {
+      color: #eee8aa;
     }
   }
 }
 .categoryName {
-  position: absolute;
-  top: 20px;
+  transition: 1.5s;
 }
 .categoryImage {
   width: 100%;
