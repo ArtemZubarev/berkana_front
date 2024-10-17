@@ -38,21 +38,34 @@ const { data, error }: any = await useAsyncData("product", () =>
       />
     </div>
     <div
-      class="infoBox ml-1/2 w-1/2 pr-10 sticky bottom-0 right-0 min-h-screen"
+      class="infoBox ml-1/2 w-1/2 pr-10 sticky bottom-0 right-0 min-h-screen pt-0"
     >
-      <h1 class="productName text-3xl">{{ data.data.name }}</h1>
-      <div class="price pt-6 text-2xl font-semibold">
+      <h1 class="productName text-3xl mb-5 text-gray-800">
+        {{ data.data.name }}
+      </h1>
+
+      <CommonSelect :label="'Размер'" />
+      <div class="price mb-4 pt-6 text-2xl font-semibold text-gray-700">
         {{ data.data.price[0].price }}
         <span>руб.</span>
       </div>
-      <p class="productDescription pt-4 text-sm w-3/4">
+      <button
+        type="button"
+        class="text-gray-800 hover:text-white border border-gray-800 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+      >
+        В корзину
+      </button>
+
+      <p class="productDescription pt-4 text-sm w-3/4 text-gray-500">
         {{ data.data.description }}
       </p>
+      <h2 class="text-xl mb-5 text-gray-800 mt-10">Похожие продукты:</h2>
+      <ProductSimilar />
     </div>
   </div>
 </template>
 
-<style>
+<style scoped>
 .infoBox {
   margin-left: 50%;
 }

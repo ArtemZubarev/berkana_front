@@ -4,8 +4,26 @@
       class="mx-auto flex max-w-screen-2xl items-center justify-between p-6 lg:px-8"
     >
       <div class="flex lg:flex-1">
-        <NuxtLink to="/" class="-m-1.5 p-1.5 font-bold text-gray-700">
-          BERKANA
+        <NuxtLink
+          to="/"
+          class="-m-1.5 p-1.5 font-bold text-gray-700 flex items-center justify-center gap-1"
+        >
+          <svg
+            class="w-8 text-deep-purple-accent-400"
+            viewBox="0 0 24 24"
+            stroke-linejoin="round"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-miterlimit="10"
+            stroke="currentColor"
+            fill="none"
+          >
+            <rect x="3" y="1" width="7" height="12"></rect>
+            <rect x="3" y="17" width="7" height="6"></rect>
+            <rect x="14" y="1" width="7" height="6"></rect>
+            <rect x="14" y="11" width="7" height="12"></rect>
+          </svg>
+          <span>BERKANA</span>
         </NuxtLink>
       </div>
       <div class="flex lg:hidden">

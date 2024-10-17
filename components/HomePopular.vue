@@ -10,7 +10,11 @@ const { data } = await useAsyncData("products", () =>
     <h2 class="text-4xl md:text-9xl mt-24 text-gray-800">Популярные товары</h2>
 
     <div class="grid grid-cols-4 grid-flow-row mt-10 w-full gap-8">
-      <ProductCard :product="product" v-for="product in data.data" />
+      <ProductCard
+        :size="'large'"
+        :product="product"
+        v-for="product in data.data"
+      />
     </div>
   </div>
 </template>

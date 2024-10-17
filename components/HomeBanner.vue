@@ -19,7 +19,7 @@
 
 <style>
 .banner-pic {
-  height: calc(100vh - 75px);
+  height: calc(100vh - 90px);
   width: 100%;
   object-fit: cover;
 }

@@ -1,17 +1,21 @@
 <script setup lang="ts">
 const config = useRuntimeConfig();
 const baseUrl = config.public.baseURL;
-const { product } = defineProps(["product"]);
-const picture = `${baseUrl}${product.preview.formats.large.url}`;
+const { product, size } = defineProps<{
+  product: any;
+  size: "large" | "small" | "medium" | "thumbnail";
+}>();
+const picture = `${baseUrl}${product.preview.formats[size].url}`;
 const linkUrl = `/products/${product.documentId}`;
+const hideText = size == "thumbnail" || size == "small";
 </script>
 
 <template>
-  <NuxtLink :to="linkUrl" class="product">
+  <NuxtLink :to="linkUrl" class="card">
     <div class="img-container rounded-2xl overflow-hidden">
-      <img class="" :src="picture" alt="" />
+      <img class="productPhoto" :src="picture" alt="" />
     </div>
-    <div class="info flex justify-between mt-4">
+    <div v-if="!hideText" class="info flex justify-between mt-4">
       <div class="name font-medium">{{ product.name }}</div>
       <div class="price font-thin">
         {{ product.price[0].price }} <span>р.</span>
@@ -19,3 +23,15 @@ const linkUrl = `/products/${product.documentId}`;
     </div>
   </NuxtLink>
 </template>
+<style scoped>
+.card {
+  &:hover {
+    .productPhoto {
+      transform: scale(1.04);
+    }
+  }
+}
+.productPhoto {
+  transition: 1.5s;
+}
+</style>
