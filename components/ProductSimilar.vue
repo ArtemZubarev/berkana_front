@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const config = useRuntimeConfig();
-const { data } = await useAsyncData("products", () =>
+const { data: products } = await useAsyncData("products", () =>
   $fetch(`${config.public.baseURL}/api/products?populate=*`)
 );
 </script>
@@ -9,7 +9,7 @@ const { data } = await useAsyncData("products", () =>
     <ProductCard
       :size="'small'"
       :product="product"
-      v-for="product in data.data"
+      v-for="product in products.data"
     />
   </div>
 </template>
