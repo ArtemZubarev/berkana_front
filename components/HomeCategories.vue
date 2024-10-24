@@ -1,12 +1,14 @@
 <script setup>
+import stringifyFilters from "~/utils/stringifyFilters";
+
 const list = ref([
   {
     name: "постельное белье",
-    slug: "bedclothes",
+    slug: "bedsheets",
   },
   {
     name: "скатерти",
-    slug: "tablecloth",
+    slug: "tablecloths",
   },
   {
     name: "полотенца",
@@ -21,6 +23,13 @@ const list = ref([
     slug: "blankets",
   },
 ]);
+
+const categoryLink = (slug) => {
+  const filters = stringifyFilters({
+    category: slug,
+  });
+  return `/catalog?${filters}`;
+};
 </script>
 
 <template>
@@ -28,7 +37,7 @@ const list = ref([
     <h2 class="text-4xl md:text-4xl mt-10 text-gray-800">категории</h2>
     <div class="grid grid-cols-4 grid-rows-2 lg:mt-4 gap-2">
       <NuxtLink
-        :to="'/catalog/' + category.slug"
+        :to="categoryLink(category.slug)"
         v-for="category in list"
         :key="category.slug"
         :class="[category.slug, 'rounded-2xl', 'overflow-hidden', 'max-h-96']"

@@ -14,10 +14,10 @@ const { data } = await useAsyncData("categories", () =>
 <template>
   <div class="list">
     <div
-      @click="$emit('change', category.documentId)"
+      @click="$emit('change', category.slug)"
       class="category cursor-pointer hover:opacity-0.5"
-      :class="[{ active: currentValue === category.documentId }]"
-      :key="category.documentId"
+      :class="[{ active: currentValue === category.slug }]"
+      :key="category.slug"
       v-for="category in data.data"
     >
       {{ category.name }}

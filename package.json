@@ -16,5 +16,8 @@
     "qs": "^6.13.0",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@types/qs": "^6.9.16"
   }
 }

@@ -1,17 +1,40 @@
 <script setup lang="ts">
 const config = useRuntimeConfig();
-const { data } = await useAsyncData("products", () =>
-  $fetch(`${config.public.baseURL}/api/products?populate=*`)
-);
+
+const route = useRoute();
+const router = useRouter();
+const parsedQuery = route.query;
 const filters = ref({
-  categoryId: "wwrd6s9g2nb8amix49v0kys4",
-  colorId: "hea9phk6kyggqp3p6iaj18yl",
+  category: parsedQuery.category,
+  color: "hea9phk6kyggqp3p6iaj18yl",
 });
-const changeCategory = (id: string) => {
-  filters.value.categoryId = id;
+
+const apiQuery = () =>
+  stringifyFilters({
+    filters: {
+      category: {
+        slug: {
+          $eq: filters.value.category,
+        },
+      },
+      // ...filters.value,
+    },
+    populate: "*",
+  });
+
+const { data, refresh } = await useAsyncData("catalog products", () =>
+  $fetch(`${config.public.baseURL}/api/products?${apiQuery()}`)
+);
+
+const changeCategory = (slug: string) => {
+  filters.value.category = slug;
+  router.push({
+    query: filters.value,
+  });
+  refresh();
 };
 const changeColor = (id: string) => {
-  filters.value.colorId = id;
+  filters.value.color = id;
 };
 </script>
 <template>
@@ -22,10 +45,10 @@ const changeColor = (id: string) => {
     <div class="flex">
       <div class="filters min-w-80 pt-8">
         <CatalogCategories
-          :currentValue="filters.categoryId"
+          :currentValue="filters.category"
           @change="changeCategory"
         />
-        <CatalogColors :currentValue="filters.colorId" @change="changeColor" />
+        <CatalogColors :currentValue="filters.color" @change="changeColor" />
       </div>
       <div class="products grid grid-cols-3 grid-flow-row mt-10 w-full gap-8">
         <ProductCard

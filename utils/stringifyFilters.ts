@@ -1,4 +1,4 @@
-const qs = require("qs");
+import * as qs from "qs";
 
 const stringifyFilters = (obj: any) => {
   return qs.stringify(obj, {
