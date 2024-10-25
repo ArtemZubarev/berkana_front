@@ -6,17 +6,30 @@ const router = useRouter();
 const parsedQuery = route.query;
 const filters = ref({
   category: parsedQuery.category,
-  color: "hea9phk6kyggqp3p6iaj18yl",
+  color: parsedQuery.color,
 });
 
 const apiQuery = () =>
   stringifyFilters({
     filters: {
-      category: {
-        slug: {
-          $eq: filters.value.category,
-        },
-      },
+      ...(filters.value.category !== "all"
+        ? {
+            category: {
+              slug: {
+                $eq: filters.value.category,
+              },
+            },
+          }
+        : []),
+      ...(filters.value.color !== "all"
+        ? {
+            color: {
+              slug: {
+                $eq: filters.value.color,
+              },
+            },
+          }
+        : []),
       // ...filters.value,
     },
     populate: "*",
@@ -33,8 +46,12 @@ const changeCategory = (slug: string) => {
   });
   refresh();
 };
-const changeColor = (id: string) => {
-  filters.value.color = id;
+const changeColor = (slug: string) => {
+  filters.value.color = slug;
+  router.push({
+    query: filters.value,
+  });
+  refresh();
 };
 </script>
 <template>
@@ -55,6 +72,7 @@ const changeColor = (id: string) => {
           :size="'medium'"
           :product="product"
           v-for="product in data.data"
+          :key="product.documentId"
         />
       </div>
     </div>

@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { LocationQueryValue } from "vue-router";
+
 const { currentValue } = defineProps<{
-  currentValue: string;
+  currentValue: string | LocationQueryValue | LocationQueryValue[] | null;
 }>();
 const emit = defineEmits<{
   change: [id: string]; // named tuple syntax
@@ -12,16 +14,23 @@ const { data } = await useAsyncData("categories", () =>
 </script>
 
 <template>
-  <div class="list">
-    <div
+  <div class="list flex flex-col">
+    <button
+      @click="$emit('change', 'all')"
+      class="category cursor-pointer hover:opacity-0.5 text-left"
+      :class="[{ active: currentValue === 'all' }]"
+    >
+      Все
+    </button>
+    <button
       @click="$emit('change', category.slug)"
-      class="category cursor-pointer hover:opacity-0.5"
+      class="category cursor-pointer hover:opacity-0.5 text-left"
       :class="[{ active: currentValue === category.slug }]"
       :key="category.slug"
       v-for="category in data.data"
     >
       {{ category.name }}
-    </div>
+    </button>
   </div>
 </template>
 

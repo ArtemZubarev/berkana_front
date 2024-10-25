@@ -82,3 +82,8 @@ const menu = [
 const mobileMenuOpen = ref(false);
 const cartItems = ref(3);
 </script>
+<style scoped>
+.router-link-active {
+  font-weight: bold;
+}
+</style>

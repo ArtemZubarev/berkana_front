@@ -1,11 +1,31 @@
 <script setup lang="ts">
+import { find, pathOr, propEq } from "rambda";
+
 const config = useRuntimeConfig();
 const baseUrl = config.public.baseURL;
 const { id } = useRoute().params;
 const { data, error }: any = await useAsyncData("product", () =>
   $fetch(`${config.public.baseURL}/api/products/${id}?populate=*`)
 );
-// const picture = `${config.public.baseUrl}${data.data.preview.formats.large.url}`;
+const currentSize = ref(data.value.data.price[0].size);
+
+const changeSize = (option: any) => {
+  currentSize.value = option;
+};
+const currentPrice = computed(() => {
+  const priceObj = find(propEq(currentSize.value, "size"))(
+    data.value.data.price
+  );
+
+  return pathOr("Цена не указана", ["price"], priceObj);
+});
+const discountPrice = computed(() => {
+  const priceObj = find(propEq(currentSize.value, "size"))(
+    data.value.data.price
+  );
+
+  return pathOr("", ["discount_price"], priceObj);
+});
 </script>
 
 <template>
@@ -44,10 +64,26 @@ const { data, error }: any = await useAsyncData("product", () =>
         {{ data.data.name }}
       </h1>
 
-      <CommonSelect :label="'Размер'" />
-      <div class="price mb-4 pt-6 text-2xl font-semibold text-gray-700">
-        {{ data.data.price[0].price }}
-        <span>руб.</span>
+      <CommonSelect
+        :label="'Размер'"
+        :valueName="'size'"
+        :currentValue="currentSize"
+        :options="data.data.price"
+        @change="changeSize"
+      />
+      <div class="flex mb-4 pt-6">
+        <div class="price text-2xl font-semibold text-gray-700 relative">
+          {{ currentPrice }}
+          <span v-if="currentPrice !== 'Цена не указана'">руб.</span>
+          <span class="block line bg-red-700" v-if="discountPrice"></span>
+        </div>
+        <div
+          v-if="discountPrice"
+          class="price ml-2 text-1xl font-bold text-red-700"
+        >
+          {{ discountPrice }}
+          <span>руб.</span>
+        </div>
       </div>
       <button
         type="button"
@@ -68,5 +104,12 @@ const { data, error }: any = await useAsyncData("product", () =>
 <style scoped>
 .infoBox {
   margin-left: 50%;
+}
+.line {
+  height: 3px;
+  top: 14px;
+  width: 50%;
+  position: absolute;
+  transform: rotate(-18deg);
 }
 </style>

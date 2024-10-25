@@ -83,7 +83,7 @@ const categoryLink = (slug) => {
   object-fit: cover;
   transition: 1s;
 }
-.bedclothes {
+.bedsheets {
   grid-area: 1 / 1 / 2 / 4;
 }
 /* .tablecloth {
