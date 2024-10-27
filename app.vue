@@ -1,6 +1,15 @@
 <script setup lang="ts">
 // You might choose this based on an API call or logged-in status
 const layout = "default";
+
+const cartQty = ref(getCart().length);
+const refreshQty = () => {
+  cartQty.value = getCart().length;
+};
+provide("cartQty", {
+  cartQty,
+  refreshQty,
+});
 </script>
 
 <template :name="layout">

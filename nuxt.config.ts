@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page", mode: "out-in" },
   },
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts"],
+  modules: ["@nuxtjs/toast", "@nuxtjs/tailwindcss", "@nuxtjs/google-fonts"],
   tailwindcss: {
     configPath: "./tailwind.config.ts",
   },
@@ -14,6 +14,19 @@ export default defineNuxtConfig({
     families: {
       Roboto: true,
     },
+  },
+  toast: {
+    position: "top-center",
+    register: [
+      // Register custom toasts
+      {
+        name: "my-error",
+        message: (message: any) => message,
+        options: {
+          type: "error",
+        },
+      },
+    ],
   },
   runtimeConfig: {
     public: {

@@ -1,7 +1,34 @@
+<script setup>
+const menu = [
+  {
+    link: "/catalog",
+    name: "Каталог",
+  },
+  {
+    link: "/about",
+    name: "О нас",
+  },
+  {
+    link: "/delivery",
+    name: "Доставка",
+  },
+  {
+    link: "/contacts",
+    name: "Контакты",
+  },
+];
+const mobileMenuOpen = ref(false);
+
+// const cart = useCookie("cart");
+// const cartItems = ref(cart.value.length);
+// provide("cartQuantity", cartItems);
+const { cartQty, refreshQty } = inject("cartQty");
+</script>
+
 <template>
   <header>
     <nav
-      class="mx-auto flex max-w-screen-2xl items-center justify-between p-6 lg:px-8"
+      class="mx-auto flex max-w-screen-2xl items-center justify-between p-6 lg:px-8 mb-10"
     >
       <div class="flex lg:flex-1">
         <NuxtLink
@@ -53,35 +80,13 @@
           class="text-sm font-normal leading-6 text-gray-900"
         >
           Корзина
-          <sup aria-hidden="true">({{ cartItems }})</sup>
+          <sup aria-hidden="true">({{ cartQty }})</sup>
         </NuxtLink>
       </div>
     </nav>
   </header>
 </template>
 
-<script setup>
-const menu = [
-  {
-    link: "/catalog",
-    name: "Каталог",
-  },
-  {
-    link: "/about",
-    name: "О нас",
-  },
-  {
-    link: "/delivery",
-    name: "Доставка",
-  },
-  {
-    link: "/contacts",
-    name: "Контакты",
-  },
-];
-const mobileMenuOpen = ref(false);
-const cartItems = ref(3);
-</script>
 <style scoped>
 .router-link-active {
   font-weight: bold;

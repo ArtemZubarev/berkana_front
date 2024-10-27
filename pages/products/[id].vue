@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { find, pathOr, propEq } from "rambda";
+import Toasted from "vue-toasted";
 
 const config = useRuntimeConfig();
 const baseUrl = config.public.baseURL;
@@ -26,6 +27,17 @@ const discountPrice = computed(() => {
 
   return pathOr("", ["discount_price"], priceObj);
 });
+
+const { refreshQty } = inject("cartQty") as any;
+
+const isInCart = ref(cartHasId(id as string));
+
+const dropInCart = () => {
+  toCart(data.value.data.documentId);
+  refreshQty();
+  isInCart.value = cartHasId(id as string);
+  // toasted.show("asddasddd");
+};
 </script>
 
 <template>
@@ -85,9 +97,19 @@ const discountPrice = computed(() => {
           <span>руб.</span>
         </div>
       </div>
+
       <button
+        class="text-gray-800 text-gray-800 border border-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+        v-if="isInCart"
+        :disabled="isInCart"
+      >
+        В корзине
+      </button>
+      <button
+        v-else
+        @click="dropInCart"
         type="button"
-        class="text-gray-800 hover:text-white border border-gray-800 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+        class="text-white hover:text-gray-800 border border-gray-800 bg-gray-800 hover:bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
       >
         В корзину
       </button>
