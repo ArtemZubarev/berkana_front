@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { find, prop } from "rambda";
 
-const config = useRuntimeConfig();
-const baseUrl = config.public.baseURL;
 const { product, size } = defineProps<{
   product: any;
   size: "large" | "small" | "medium" | "thumbnail";
 }>();
+
+const config = useRuntimeConfig();
+const baseUrl = config.public.baseURL;
+
 const picture = `${baseUrl}${product.preview.formats[size].url}`;
 const linkUrl = `/products/${product.documentId}`;
 const hideText = size == "thumbnail" || size == "small";

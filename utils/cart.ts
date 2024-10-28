@@ -6,10 +6,11 @@ export const getCart = () => {
   return JSON.parse(cookieString || "[]");
 };
 
-export const toCart = (id: string) => {
+export const toCart = ({ id, size }: { id: string; size: string }) => {
   const newArray = append(
     {
       id,
+      size,
       quantity: 1,
     },
     getCart()
@@ -18,8 +19,11 @@ export const toCart = (id: string) => {
   Cookies.set("cart", JSON.stringify(newArray));
 };
 
-export const deleteFromCart = (id: string) => {
-  const filtered = filter((cartId: string) => cartId !== id, getCart());
+export const deleteFromCart = (productId: string, productSize: string) => {
+  const filtered = filter(
+    ({ id, size }) => productId !== id && productSize !== size,
+    getCart()
+  );
 
   Cookies.set("cart", JSON.stringify(filtered));
 };

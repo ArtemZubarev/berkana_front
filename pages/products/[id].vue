@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { find, pathOr, propEq } from "rambda";
-import Toasted from "vue-toasted";
+import { toast } from "vue3-toastify";
 
 const config = useRuntimeConfig();
 const baseUrl = config.public.baseURL;
@@ -33,10 +33,14 @@ const { refreshQty } = inject("cartQty") as any;
 const isInCart = ref(cartHasId(id as string));
 
 const dropInCart = () => {
-  toCart(data.value.data.documentId);
+  toCart({
+    id: data.value.data.documentId,
+    size: currentSize.value,
+  });
   refreshQty();
   isInCart.value = cartHasId(id as string);
-  // toasted.show("asddasddd");
+
+  toast.info("Добавлено в корзину!", { autoClose: 1000 });
 };
 </script>
 
@@ -99,9 +103,8 @@ const dropInCart = () => {
       </div>
 
       <button
-        class="text-gray-800 text-gray-800 border border-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+        class="bg-white border-gray-300 cursor-default text-gray-800 border focus:ring-4 outline-none focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
         v-if="isInCart"
-        :disabled="isInCart"
       >
         В корзине
       </button>

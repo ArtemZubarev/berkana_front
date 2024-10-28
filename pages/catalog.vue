@@ -54,6 +54,7 @@ const changeColor = (slug: string) => {
   refresh();
 };
 </script>
+
 <template>
   <div
     class="mx-auto max-w-screen-2xl items-center justify-between py-0 px-2 lg:px-8 overflow-hidden relative"

@@ -31,4 +31,8 @@ provide("cartQty", {
   opacity: 0;
   filter: blur(1rem);
 }
+:root {
+  /* --toastify-color-success: #fff;
+  --toastify-text-color-success: rgb(55, 65, 81); */
+}
 </style>
