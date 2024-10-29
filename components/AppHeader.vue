@@ -22,7 +22,7 @@ const mobileMenuOpen = ref(false);
 // const cart = useCookie("cart");
 // const cartItems = ref(cart.value.length);
 // provide("cartQuantity", cartItems);
-const { cartQty, refreshQty } = inject("cartQty");
+const { cartQty } = inject("cartQty");
 </script>
 
 <template>

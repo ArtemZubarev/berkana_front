@@ -28,9 +28,13 @@ const discountPrice = computed(() => {
   return pathOr("", ["discount_price"], priceObj);
 });
 
-const { refreshQty } = inject("cartQty") as any;
+const { cartQty, refreshQty } = inject("cartQty") as any;
 
-const isInCart = ref(cartHasId(id as string));
+const isInCart = computed(() => {
+  console.log(cartQty.value);
+
+  return cartHasId(id as string, currentSize.value);
+});
 
 const dropInCart = () => {
   toCart({
@@ -38,7 +42,6 @@ const dropInCart = () => {
     size: currentSize.value,
   });
   refreshQty();
-  isInCart.value = cartHasId(id as string);
 
   toast.info("Добавлено в корзину!", { autoClose: 1000 });
 };
@@ -102,14 +105,16 @@ const dropInCart = () => {
         </div>
       </div>
 
-      <button
-        class="bg-white border-gray-300 cursor-default text-gray-800 border focus:ring-4 outline-none focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+      <div
         v-if="isInCart"
+        class="inline-block bg-white border-gray-300 cursor-default text-gray-800 border focus:ring-4 outline-none focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+        :key="'in'"
       >
         В корзине
-      </button>
+      </div>
       <button
-        v-else
+        v-else-if="!isInCart"
+        :key="'notIn'"
         @click="dropInCart"
         type="button"
         class="text-white hover:text-gray-800 border border-gray-800 bg-gray-800 hover:bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"

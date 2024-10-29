@@ -1,24 +1,47 @@
 <script setup lang="ts">
+import { find, propEq } from "rambda";
+
 const config = useRuntimeConfig();
-const baseUrl = config.public.baseURL;
 
 const cart: any = useCookie("cart");
+const { refreshQty } = inject("cartQty") as any;
 
 const apiQuery = () =>
   stringifyFilters({
     filters: {
       documentId: {
-        $in: cart.value.map(({ id }: any) => id),
+        $in: Object.keys(cart.value),
       },
     },
     populate: "*",
   });
 
-const { data, refresh } = await useAsyncData("cart products", () =>
+const { data, refresh } = await useAsyncData<any[]>("cart products", () =>
   $fetch(`${config.public.baseURL}/api/products?${apiQuery()}`)
 );
 
-const productImg = (url: string) => `${baseUrl}${url}`;
+const findProduct = (id: string | number) => {
+  const prod = find(propEq(id, "documentId"))(data.value!.data);
+
+  if (prod) {
+    return prod;
+  }
+
+  return {};
+};
+
+const deleteProduct = (productId: string, productSize: string) => {
+  deleteFromCart(productId, productSize);
+  refreshCookie("cart");
+  refreshQty();
+};
+
+const updateQtty = (id: string, size: string, qty: number) => {
+  updateQuantity(id, size, qty);
+  refreshCookie("cart");
+};
+
+const cartIsEmpty = computed(() => Object.keys(cart.value).length === 0);
 </script>
 
 <template>
@@ -27,30 +50,34 @@ const productImg = (url: string) => `${baseUrl}${url}`;
   >
     <h1 class="text-6xl">Корзина</h1>
 
-    <div class="producttList mt-10 divide-y">
-      <div
-        class="product flex items-center justify-between max-w-[60%] py-4"
-        v-for="product in data.data"
+    <div
+      v-if="cartIsEmpty"
+      class="mt-20 flex flex-col justify-center items-center"
+    >
+      Корзина пуста
+      <br />
+      <nuxt-link
+        to="/catalog"
+        type="button"
+        class="inline-block mt-5 text-white hover:text-gray-800 border border-gray-800 bg-gray-800 hover:bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
       >
-        <div class="productImg rounded-full overflow-hidden">
-          <img
-            class="object-cover w-[80px] h-[80px]"
-            :src="productImg(product.preview.formats.thumbnail.url)"
-            :alt="product.name"
-          />
-        </div>
-        <div class="productName grow pl-8">{{ product.name }}</div>
-        <div class="productQty">
-          <InputCounter />
-        </div>
-        <div class="productSize"></div>
-        <div class="productPrice"></div>
-        <div class="productDel ml-10">
-          <button class="delete opacity-50 hover:opacity-30">
-            <nuxt-icon name="delete" />
-          </button>
-        </div>
+        Продолжить покупки
+      </nuxt-link>
+    </div>
+
+    <div v-else class="">
+      <div class="producttList mt-10 divide-y">
+        <CartProduct
+          v-for="(product, key) in cart"
+          :product="product"
+          :productDetails="findProduct(key)"
+          :key="key"
+          @changeQtty=""
+          @remove="deleteProduct"
+          @updateQtty="updateQtty"
+        />
       </div>
+      <CartDelivery />
     </div>
   </div>
 </template>

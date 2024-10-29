@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { countItemsInCart } from "./utils/cart";
+
 // You might choose this based on an API call or logged-in status
 const layout = "default";
 
-const cartQty = ref(getCart().length);
+const cartQty = ref(countItemsInCart());
+
 const refreshQty = () => {
-  cartQty.value = getCart().length;
+  cartQty.value = countItemsInCart();
 };
 provide("cartQty", {
   cartQty,
