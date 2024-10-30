@@ -45,7 +45,7 @@ const updateQtty = (id: string, size: string, qty: number) => {
         :alt="product.name"
       />
     </div>
-    <div class="productName grow pl-5 pt-4">
+    <div class="productName grow pl-5 pt-4 max-w-[230px]">
       <NuxtLink
         class="hover:underline"
         :to="`/products/${productDetails.documentId}`"

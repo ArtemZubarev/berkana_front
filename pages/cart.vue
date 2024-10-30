@@ -52,10 +52,11 @@ const cartIsEmpty = computed(() => Object.keys(cart.value).length === 0);
 
     <div
       v-if="cartIsEmpty"
-      class="mt-20 flex flex-col justify-center items-center"
+      class="empty relative mt-0 flex flex-col justify-center items-center"
     >
+      <img class="max-w-[420px] opacity-50" src="/rabbit.png" alt="" />
       Корзина пуста
-      <br />
+
       <nuxt-link
         to="/catalog"
         type="button"
@@ -81,3 +82,8 @@ const cartIsEmpty = computed(() => Object.keys(cart.value).length === 0);
     </div>
   </div>
 </template>
+
+<style>
+.empty {
+}
+</style>
