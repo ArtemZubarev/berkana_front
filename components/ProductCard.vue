@@ -3,7 +3,7 @@ import { find, prop } from "rambda";
 
 const { product, size } = defineProps<{
   product: any;
-  size: "large" | "small" | "medium" | "thumbnail";
+  size: "small" | "medium" | "thumbnail";
 }>();
 
 const config = useRuntimeConfig();
@@ -13,13 +13,15 @@ const picture = `${baseUrl}${product.preview.formats[size].url}`;
 const linkUrl = `/products/${product.documentId}`;
 const hideText = size == "thumbnail" || size == "small";
 const hasSale = computed(() => {
-  return !!find(prop("discount_price"))(product.price);
+  return !!find(() => !!prop("discount_price"))(product.price);
 });
 </script>
 
 <template>
   <NuxtLink :to="linkUrl" class="card">
-    <div class="relative img-container rounded-2xl overflow-hidden h-[495px]">
+    <div
+      class="relative img-container rounded-2xl overflow-hidden lg:h-[495px]"
+    >
       <img class="productPhoto" :src="picture" alt="" />
       <span
         v-if="hasSale"

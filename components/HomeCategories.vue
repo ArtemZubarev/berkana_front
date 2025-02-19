@@ -33,14 +33,20 @@ const categoryLink = (slug) => {
 </script>
 
 <template>
-  <div class="categories max-w-screen-2xl p-6 lg:px-8">
+  <div class="mx-auto categories max-w-screen-2xl p-6 lg:px-8">
     <h2 class="text-4xl md:text-4xl mt-10 text-gray-800">категории</h2>
-    <div class="grid grid-cols-4 grid-rows-2 lg:mt-4 gap-2">
+    <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 lg:mt-4 gap-2">
       <NuxtLink
         :to="categoryLink(category.slug)"
         v-for="category in list"
         :key="category.slug"
-        :class="[category.slug, 'rounded-2xl', 'overflow-hidden', 'max-h-96']"
+        :class="[
+          category.slug,
+          'rounded-2xl',
+          'overflow-hidden',
+          'max-h-40',
+          'lg:max-h-96',
+        ]"
       >
         <div class="category">
           <img
@@ -49,7 +55,7 @@ const categoryLink = (slug) => {
             class="categoryImage"
           />
           <p
-            class="categoryName text-6xl font-thin text-white ml-5 top-3 absolute"
+            class="categoryName text-4xl lg:text-6xl font-thin text-white ml-5 top-3 absolute"
           >
             {{ category.name }}
           </p>
@@ -83,13 +89,15 @@ const categoryLink = (slug) => {
   object-fit: cover;
   transition: 1s;
 }
-.bedsheets {
-  grid-area: 1 / 1 / 2 / 4;
-}
-/* .tablecloth {
-  grid-area: 1 / 3 / 2 / 3;
-} */
-.blankets {
-  grid-area: 2 / 3 / 4 / 5;
+@media (min-width: 1024px) {
+  .bedsheets {
+    grid-area: 1 / 1 / 2 / 4;
+  }
+  /* .tablecloth {
+    grid-area: 1 / 3 / 2 / 3;
+  } */
+  .blankets {
+    grid-area: 2 / 3 / 4 / 5;
+  }
 }
 </style>

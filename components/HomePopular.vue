@@ -1,19 +1,25 @@
 <script setup lang="ts">
+import { useStrapi, type StrapiResponse } from "~/composables/useStrapi";
+
+const { fetchStrapi } = useStrapi();
 const config = useRuntimeConfig();
-const { data } = await useAsyncData("products", () =>
-  $fetch(`${config.public.baseURL}/api/products?populate=*`)
+const { data } = useAsyncData<StrapiResponse>("products", () =>
+  fetchStrapi(`/api/products?populate=*`)
 );
 </script>
 
 <template>
-  <div class="max-w-screen-2xl p-6 lg:px-8">
+  <div class="mx-auto max-w-screen-2xl p-6 lg:px-8">
     <h2 class="text-4xl md:text-7xl mt-24 text-gray-800">Популярные товары</h2>
 
-    <div class="grid grid-cols-4 grid-flow-row mt-10 w-full gap-8">
+    <div
+      class="grid grid-cols-2 lg:grid-cols-4 grid-flow-row mt-10 w-full gap-8"
+    >
       <ProductCard
-        :size="'large'"
+        v-for="product in data?.data"
+        :size="'medium'"
         :product="product"
-        v-for="product in data.data"
+        :key="product.id"
       />
     </div>
   </div>

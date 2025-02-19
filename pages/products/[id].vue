@@ -1,13 +1,20 @@
 <script setup lang="ts">
 import { find, pathOr, propEq } from "rambda";
 import { toast } from "vue3-toastify";
+import type { StrapiResponse } from "~/composables/useStrapi";
+import { register } from "swiper/element/bundle";
+import "swiper/css";
+register();
 
 const config = useRuntimeConfig();
 const baseUrl = config.public.baseURL;
 const { id } = useRoute().params;
-const { data, error }: any = await useAsyncData("product", () =>
-  $fetch(`${config.public.baseURL}/api/products/${id}?populate=*`)
+const { fetchStrapi } = useStrapi();
+const { data, meta }: StrapiResponse = await useAsyncData<StrapiResponse>(
+  "product",
+  () => fetchStrapi(`/api/products/${id}?populate=*`)
 );
+console.log(data);
 const currentSize = ref(data.value.data.price[0].size);
 
 const changeSize = (option: any) => {
@@ -48,36 +55,44 @@ const dropInCart = () => {
 </script>
 
 <template>
-  <div class="product categories max-w-screen-2xl p-6 lg:px-8">
-    <div class="box w-1/2">
+  <div
+    class="flex max-w-[100%] flex-col lg:block product categories lg:max-w-screen-2xl p-6 lg:px-8"
+  >
+    <swiper-container slides-per-view="1">
+      <swiper-slide>Slide 1</swiper-slide>
+      <swiper-slide>Slide 2</swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
+      ...
+    </swiper-container>
+    <div class="box lg:w-1/2">
       <img
         class=""
-        :src="`${baseUrl}${data.data.preview.formats.large.url}`"
+        :src="`${baseUrl}${data.data.preview.formats.medium.url}`"
         alt=""
       />
       <img
         class=""
-        :src="`${baseUrl}${data.data.preview.formats.large.url}`"
+        :src="`${baseUrl}${data.data.preview.formats.medium.url}`"
         alt=""
       />
       <img
         class=""
-        :src="`${baseUrl}${data.data.preview.formats.large.url}`"
+        :src="`${baseUrl}${data.data.preview.formats.medium.url}`"
         alt=""
       />
       <img
         class=""
-        :src="`${baseUrl}${data.data.preview.formats.large.url}`"
+        :src="`${baseUrl}${data.data.preview.formats.medium.url}`"
         alt=""
       />
       <img
         class=""
-        :src="`${baseUrl}${data.data.preview.formats.large.url}`"
+        :src="`${baseUrl}${data.data.preview.formats.medium.url}`"
         alt=""
       />
     </div>
     <div
-      class="infoBox ml-1/2 w-1/2 pr-10 sticky bottom-0 right-0 min-h-screen pt-0"
+      class="infoBox lg:ml-[50%] lg:w-1/2 pr-10 lg:sticky bottom-0 right-0 min-h-screen pt-0"
     >
       <h1 class="productName text-3xl mb-5 text-gray-800">
         {{ data.data.name }}
@@ -126,15 +141,15 @@ const dropInCart = () => {
         {{ data.data.description }}
       </p>
       <h2 class="text-xl mb-5 text-gray-800 mt-10">Похожие продукты:</h2>
-      <ProductSimilar />
+      <!-- <ProductSimilar /> -->
     </div>
   </div>
 </template>
 
 <style scoped>
-.infoBox {
+/* .infoBox {
   margin-left: 50%;
-}
+} */
 .line {
   height: 3px;
   top: 14px;

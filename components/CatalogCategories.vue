@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { LocationQueryValue } from "vue-router";
+import type { StrapiResponse } from "~/composables/useStrapi";
 
 const { currentValue } = defineProps<{
   currentValue: string | LocationQueryValue | LocationQueryValue[] | null;
@@ -8,8 +9,10 @@ const emit = defineEmits<{
   change: [id: string]; // named tuple syntax
 }>();
 const config = useRuntimeConfig();
-const { data } = await useAsyncData("categories", () =>
-  $fetch(`${config.public.baseURL}/api/categories`)
+const { fetchStrapi } = useStrapi();
+
+const { data } = await useAsyncData<StrapiResponse>("categories", () =>
+  fetchStrapi(`/api/categories`)
 );
 </script>
 
@@ -27,7 +30,7 @@ const { data } = await useAsyncData("categories", () =>
       class="category cursor-pointer hover:opacity-0.5 text-left"
       :class="[{ active: currentValue === category.slug }]"
       :key="category.slug"
-      v-for="category in data.data"
+      v-for="category in data?.data"
     >
       {{ category.name }}
     </button>

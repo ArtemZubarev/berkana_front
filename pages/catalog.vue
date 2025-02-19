@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { StrapiResponse } from "~/composables/useStrapi";
+
 const config = useRuntimeConfig();
 
 const route = useRoute();
@@ -34,9 +36,10 @@ const apiQuery = () =>
     },
     populate: "*",
   });
-
-const { data, refresh } = await useAsyncData("catalog products", () =>
-  $fetch(`${config.public.baseURL}/api/products?${apiQuery()}`)
+const { fetchStrapi } = useStrapi();
+const { data, refresh } = await useAsyncData<StrapiResponse>(
+  "catalog products",
+  () => fetchStrapi(`/api/products?${apiQuery()}`)
 );
 
 const changeCategory = (slug: string) => {
@@ -70,9 +73,9 @@ const changeColor = (slug: string) => {
       </div>
       <div class="products grid grid-cols-3 grid-flow-row mt-10 w-full gap-8">
         <ProductCard
+          v-for="product in data!.data"
           :size="'medium'"
           :product="product"
-          v-for="product in data.data"
           :key="product.documentId"
         />
       </div>

@@ -18,6 +18,9 @@ const menu = [
   },
 ];
 const mobileMenuOpen = ref(false);
+const toggleMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value;
+};
 
 // const cart = useCookie("cart");
 // const cartItems = ref(cart.value.length);
@@ -26,9 +29,9 @@ const { cartQty } = inject("cartQty");
 </script>
 
 <template>
-  <header>
+  <header class="relative mb-10">
     <nav
-      class="mx-auto flex max-w-screen-2xl items-center justify-between p-6 lg:px-8 mb-10"
+      class="nav md:flex mx-auto flex max-w-screen-2xl items-center justify-between p-6 lg:px-8"
     >
       <div class="flex lg:flex-1">
         <NuxtLink
@@ -56,22 +59,35 @@ const { cartQty } = inject("cartQty");
       <div class="flex lg:hidden">
         <button
           type="button"
-          class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-          @click="mobileMenuOpen = true"
+          class="inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+          @click="toggleMenu"
         >
           <span class="sr-only">Open main menu</span>
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
           <!-- <Bars3Icon class="h-6 w-6" aria-hidden="true" /> -->
         </button>
       </div>
       <ul
-        class="flex flex-col p-4 md:p-0 mt-4 font-medium font-normal border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+        class="hidden lg:flex flex-col p-4 md:p-0 mt-4 font-medium font-normal border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
       >
         <li
           class="font-manrope text-sm text-gray-800 hover:text-gray-500"
           v-for="item in menu"
         >
           <NuxtLink :to="item.link">{{ item.name }}</NuxtLink>
-          <!-- <NuxtLink to="/about">О нас</NuxtLink> -->
         </li>
       </ul>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -84,11 +100,53 @@ const { cartQty } = inject("cartQty");
         </NuxtLink>
       </div>
     </nav>
+    <Transition name="slide">
+      <div
+        v-if="mobileMenuOpen"
+        class="flex items-center w-full absolute top-[100%] left-0 w-full bg-white z-10 shadow-lg"
+      >
+        <ul
+          class="flex w-full justify-center flex-row p-4 font-medium font-normal gap-4 rtl:space-x-reverse dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+        >
+          <li
+            class="font-manrope text-sm text-gray-800 hover:text-gray-500"
+            v-for="item in menu"
+          >
+            <NuxtLink :to="item.link">{{ item.name }}</NuxtLink>
+          </li>
+          <li class="font-manrope text-sm text-gray-800 hover:text-gray-500">
+            <NuxtLink to="/cart" class="text-sm font-normal text-gray-900">
+              Корзина
+              <sup aria-hidden="true">({{ cartQty }})</sup>
+            </NuxtLink>
+          </li>
+        </ul>
+      </div>
+    </Transition>
   </header>
 </template>
 
 <style scoped>
+.nav {
+  & > * {
+    /* flex: 1 1 0px; */
+  }
+}
 .router-link-active {
   font-weight: bold;
+}
+.slide-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-leave-active {
+  /* transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1); */
+  transition: all 0.3s ease-out;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateY(-50px);
+  opacity: 0;
 }
 </style>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { LocationQueryValue } from "vue-router";
+import type { StrapiResponse } from "~/composables/useStrapi";
 
 const { currentValue } = defineProps<{
   currentValue: string | LocationQueryValue | LocationQueryValue[] | null;
@@ -8,9 +9,11 @@ const emit = defineEmits<{
   change: [slug: string]; // named tuple syntax
 }>();
 const config = useRuntimeConfig();
-const { data } = await useAsyncData("colors", () =>
-  $fetch(`${config.public.baseURL}/api/colors`)
+const { fetchStrapi } = useStrapi();
+const { data } = await useAsyncData<StrapiResponse>("colors", () =>
+  fetchStrapi(`/api/colors`)
 );
+
 const colors = {
   gray: "bg-gray-300",
   red: "bg-red-500	",
@@ -43,6 +46,8 @@ const colors = {
         <span class="line two"></span>
       </button>
       <button
+        v-for="color in data!.data"
+        @click="$emit('change', color.slug)"
         :class="[
           'color',
           'rounded-full',
@@ -50,11 +55,9 @@ const colors = {
           'h-8',
           'border-2',
           'border-slate-100',
-          colors[color.slug],
+          colors[color.slug as keyof typeof colors],
           { active: currentValue === color.slug },
         ]"
-        v-for="color in data.data"
-        @click="$emit('change', color.slug)"
       ></button>
     </div>
   </div>
