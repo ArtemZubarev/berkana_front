@@ -20,15 +20,37 @@ const { data } = await useAsyncData<StrapiResponse>("categories", () =>
   <div class="list flex flex-col">
     <button
       @click="$emit('change', 'all')"
-      class="category cursor-pointer hover:opacity-0.5 text-left"
-      :class="[{ active: currentValue === 'all' }]"
+      class="category cursor-pointer hover:opacity-0.5 text-left p-1 pl-[15px] ml-[-15px] max-w-[240px]"
+      :class="[
+        ...(currentValue === 'all'
+          ? [
+              'transition',
+              'duration-200',
+              'shadow-md',
+              'shadow-gray-500/15',
+              'bg-gray-100',
+              'rounded',
+            ]
+          : []),
+      ]"
     >
       Все
     </button>
     <button
       @click="$emit('change', category.slug)"
-      class="category cursor-pointer hover:opacity-0.5 text-left"
-      :class="[{ active: currentValue === category.slug }]"
+      class="category cursor-pointer hover:opacity-0.5 text-left p-1 pl-[15px] ml-[-15px] max-w-[240px]"
+      :class="[
+        ...(currentValue === category.slug
+          ? [
+              'transition',
+              'duration-200',
+              'shadow-md',
+              'shadow-gray-500/15',
+              'bg-gray-100',
+              'rounded',
+            ]
+          : []),
+      ]"
       :key="category.slug"
       v-for="category in data?.data"
     >
@@ -39,6 +61,6 @@ const { data } = await useAsyncData<StrapiResponse>("categories", () =>
 
 <style>
 .category.active {
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 </style>

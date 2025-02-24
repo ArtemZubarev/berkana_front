@@ -37,6 +37,9 @@ const findProduct = (id: string | number) => {
 
 const cartIsEmpty = computed(() => Object.keys(cart.value).length === 0);
 const totalSum = computed(() => {
+  if (cartIsEmpty) {
+    return 0;
+  }
   const sum = cartSum(cart.value, data.value?.data);
   return sum >= FREE_DELIVERY_MIN ? sum : sum + DELIVERY_PRICE;
 });

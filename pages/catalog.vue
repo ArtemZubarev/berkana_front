@@ -104,7 +104,7 @@ watch(
     class="mx-auto max-w-screen-2xl items-center justify-between py-0 px-2 lg:px-8 overflow-hidden relative"
   >
     <h2 class="text-6xl">Каталог</h2>
-    <div class="lg:flex">
+    <div class="lg:flex gap-2">
       <div class="filters min-w-80 pt-8">
         <CatalogCategories
           :currentValue="filters.category"

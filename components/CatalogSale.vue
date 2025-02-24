@@ -17,7 +17,7 @@ const handleChange = (e) => {
       id="checked-checkbox"
       type="checkbox"
       value=""
-      class="w-5 h-5 accent-red-500 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2"
+      class="w-5 h-5 accent-red-700 border-red-300 rounded-sm focus:ring-red-100 focus:ring-2 cursor-pointer"
       @change="handleChange"
     />
     <label

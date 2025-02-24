@@ -89,7 +89,7 @@ const { cartQty } = inject("cartQty");
       >
         <li
           class="font-manrope text-sm text-gray-800 hover:text-gray-500"
-          :class="{ 'text-red-500': item.name === 'SALE' }"
+          :class="{ 'text-red-700': item.name === 'SALE' }"
           v-for="item in menu"
         >
           <NuxtLink :to="item.link">{{ item.name }}</NuxtLink>
@@ -115,7 +115,7 @@ const { cartQty } = inject("cartQty");
         >
           <li
             class="font-manrope text-sm text-gray-800 hover:text-gray-500"
-            :class="{ 'text-red-500': item.name === 'Sale' }"
+            :class="{ 'text-red-700': item.name === 'SALE' }"
             @click="toggleMenu"
             v-for="item in menu"
           >
