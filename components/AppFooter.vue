@@ -79,7 +79,7 @@
       </div>
       <div>
         <span class="text-base font-bold tracking-wide text-gray-900"
-          >Social</span
+          >Соцсети</span
         >
         <div class="flex items-center mt-1 space-x-3">
           <a

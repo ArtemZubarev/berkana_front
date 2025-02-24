@@ -37,7 +37,7 @@ const updateQtty = (id: string, size: string, qty: number) => {
 </script>
 
 <template>
-  <div class="product flex items-start justify-between max-w-[50%] py-2">
+  <div class="product flex items-start justify-between lg:max-w-[50%] py-2">
     <div class="productImg rounded-md overflow-hidden border-4 border-gray-200">
       <img
         class="object-cover w-[50px] h-[50px]"

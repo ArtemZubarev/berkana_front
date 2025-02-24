@@ -14,7 +14,7 @@ const { data, meta }: StrapiResponse = await useAsyncData<StrapiResponse>(
   "product",
   () => fetchStrapi(`/api/products/${id}?populate=*`)
 );
-console.log(data);
+
 const currentSize = ref(data.value.data.price[0].size);
 
 const changeSize = (option: any) => {
@@ -58,13 +58,7 @@ const dropInCart = () => {
   <div
     class="flex max-w-[100%] flex-col lg:block product categories lg:max-w-screen-2xl p-6 lg:px-8"
   >
-    <swiper-container slides-per-view="1">
-      <swiper-slide>Slide 1</swiper-slide>
-      <swiper-slide>Slide 2</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
-      ...
-    </swiper-container>
-    <div class="box lg:w-1/2">
+    <div class="box order-2 lg:w-1/2">
       <img
         class=""
         :src="`${baseUrl}${data.data.preview.formats.medium.url}`"
@@ -92,7 +86,7 @@ const dropInCart = () => {
       />
     </div>
     <div
-      class="infoBox lg:ml-[50%] lg:w-1/2 pr-10 lg:sticky bottom-0 right-0 min-h-screen pt-0"
+      class="infoBox mb-10 lg:mb-0 lg:ml-[50%] lg:w-1/2 pr-10 lg:sticky bottom-0 right-0 lg:min-h-screen pt-0"
     >
       <h1 class="productName text-3xl mb-5 text-gray-800">
         {{ data.data.name }}
@@ -140,8 +134,10 @@ const dropInCart = () => {
       <p class="productDescription pt-4 text-sm w-3/4 text-gray-500">
         {{ data.data.description }}
       </p>
-      <h2 class="text-xl mb-5 text-gray-800 mt-10">Похожие продукты:</h2>
-      <!-- <ProductSimilar /> -->
+      <h2 class="text-xl hidden lg:block mb-5 text-gray-800 mt-10">
+        Похожие продукты:
+      </h2>
+      <ProductSimilar />
     </div>
   </div>
 </template>

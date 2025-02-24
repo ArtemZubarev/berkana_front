@@ -24,7 +24,7 @@ const updateQuantity = (qty: number) => {
     </div>
     <div class="productPrice text-right relative">
       <span class="normalPrice font-thin relative block text-gray-700">
-        {{ sizeDetails.price }} р
+        {{ sizeDetails.price * quantity }} р
         <span
           class="block line bg-red-700"
           v-if="sizeDetails.discount_price"
@@ -34,7 +34,7 @@ const updateQuantity = (qty: number) => {
         v-if="sizeDetails.discount_price"
         class="discountPrice text-sm font-bold text-red-700 absolute top-[-16px] right-[-7px]"
       >
-        {{ sizeDetails.discount_price }}
+        {{ sizeDetails.discount_price * quantity }}
       </span>
     </div>
     <div class="productDel ml-10">

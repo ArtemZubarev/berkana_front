@@ -3,7 +3,7 @@ import { useStrapi, type StrapiResponse } from "~/composables/useStrapi";
 
 const { fetchStrapi } = useStrapi();
 const config = useRuntimeConfig();
-const { data } = useAsyncData<StrapiResponse>("products", () =>
+const { data } = useAsyncData<StrapiResponse>("products_popular", () =>
   fetchStrapi(`/api/products?populate=*`)
 );
 </script>

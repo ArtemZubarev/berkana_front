@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { find, prop } from "rambda";
+import { any, both, flip, gt, has, is, propSatisfies } from "rambda";
 
 const { product, size } = defineProps<{
   product: any;
@@ -12,9 +12,19 @@ const baseUrl = config.public.baseURL;
 const picture = `${baseUrl}${product.preview.formats[size].url}`;
 const linkUrl = `/products/${product.documentId}`;
 const hideText = size == "thumbnail" || size == "small";
+// const hasSale = computed(() => {
+//   return !!find(() => !!prop("discount_price") !== null)(product.price);
+// });
 const hasSale = computed(() => {
-  return !!find(() => !!prop("discount_price"))(product.price);
+  return any(
+    both(
+      has("discount_price"),
+      propSatisfies(both(is(Number), flip(gt)(0)), "discount_price")
+    ),
+    product.price
+  );
 });
+const isNew = computed(() => product.is_new);
 </script>
 
 <template>
@@ -23,11 +33,18 @@ const hasSale = computed(() => {
       class="relative img-container rounded-2xl overflow-hidden lg:h-[495px]"
     >
       <img class="productPhoto" :src="picture" alt="" />
-      <span
-        v-if="hasSale"
-        class="bg-red-400 px-2 rounded-md absolute top-4 right-4 text-white font-thin text-sm"
-        >SALE</span
-      >
+      <div class="absolute top-4 right-4 flex gap-2">
+        <span
+          v-if="isNew"
+          class="bg-green-300 px-2 rounded-md text-white font-thin text-sm"
+          >NEW</span
+        >
+        <span
+          v-if="hasSale"
+          class="bg-red-400 px-2 rounded-md text-white font-thin text-sm"
+          >SALE</span
+        >
+      </div>
     </div>
     <div v-if="!hideText" class="info flex justify-between mt-4">
       <div class="name font-medium">{{ product.name }}</div>

@@ -16,6 +16,10 @@ const menu = [
     link: "/contacts",
     name: "Контакты",
   },
+  {
+    link: "/catalog?sale=true",
+    name: "SALE",
+  },
 ];
 const mobileMenuOpen = ref(false);
 const toggleMenu = () => {
@@ -85,6 +89,7 @@ const { cartQty } = inject("cartQty");
       >
         <li
           class="font-manrope text-sm text-gray-800 hover:text-gray-500"
+          :class="{ 'text-red-500': item.name === 'SALE' }"
           v-for="item in menu"
         >
           <NuxtLink :to="item.link">{{ item.name }}</NuxtLink>
@@ -106,10 +111,12 @@ const { cartQty } = inject("cartQty");
         class="flex items-center w-full absolute top-[100%] left-0 w-full bg-white z-10 shadow-lg"
       >
         <ul
-          class="flex w-full justify-center flex-row p-4 font-medium font-normal gap-4 rtl:space-x-reverse dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+          class="flex w-full justify-center flex-row p-4 font-medium font-normal gap-2 rtl:space-x-reverse dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
         >
           <li
             class="font-manrope text-sm text-gray-800 hover:text-gray-500"
+            :class="{ 'text-red-500': item.name === 'Sale' }"
+            @click="toggleMenu"
             v-for="item in menu"
           >
             <NuxtLink :to="item.link">{{ item.name }}</NuxtLink>
