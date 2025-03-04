@@ -15,6 +15,7 @@ const hideText = size == "thumbnail" || size == "small";
 // const hasSale = computed(() => {
 //   return !!find(() => !!prop("discount_price") !== null)(product.price);
 // });
+
 const hasSale = computed(() => {
   return any(
     both(
