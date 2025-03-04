@@ -46,11 +46,11 @@
         <div class="flex">
           <p class="mr-1 text-gray-800">Телефон:</p>
           <a
-            href="tel:+79221111213"
+            href="tel:+79226686116"
             aria-label="Our phone"
             title="Our phone"
             class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
-            >+7 (922)111-12-13</a
+            >+7 (922) 668-61-16</a
           >
         </div>
         <div class="flex">
@@ -66,14 +66,14 @@
         <div class="flex">
           <p class="mr-1 text-gray-800">Адрес:</p>
           <a
-            href="https://www.google.com/maps"
+            href="https://yandex.ru/maps/-/CHuLMJ1T"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Our address"
             title="Our address"
             class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
           >
-            г. Киров, ул. Ленина, 88
+            Карла Маркса 127 оф.402, Киров
           </a>
         </div>
       </div>
