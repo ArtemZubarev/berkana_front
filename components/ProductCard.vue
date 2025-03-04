@@ -24,6 +24,7 @@ const hasSale = computed(() => {
     product.price
   );
 });
+
 const isNew = computed(() => product.is_new);
 </script>
 
