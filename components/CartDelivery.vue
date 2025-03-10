@@ -78,7 +78,7 @@ const form = reactive({
       <a
         class="text-gray-700 underline hover:opacity-70"
         target="_blank"
-        href=""
+        href="/docs/policy_berkana.pdf"
         >политикой конфиденциальности</a
       >
     </p>

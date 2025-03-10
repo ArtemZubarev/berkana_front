@@ -7,6 +7,7 @@
     <!-- <HomePersonal />
     <HomeAbout /> -->
     <HomeCategories />
+    <HomeIndividual />
     <!-- <NuxtRouteAnnouncer />
     <NuxtWelcome /> -->
   </div>

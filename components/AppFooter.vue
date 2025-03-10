@@ -1,6 +1,6 @@
 <template>
   <div
-    class="p-6 lg:px-8 pt-16 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:px-8 lg:mt-40"
+    class="p-6 lg:px-8 pt-16 w-full mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:px-8 lg:mt-40"
   >
     <div class="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
       <div class="sm:col-span-2">
@@ -31,40 +31,6 @@
           >
         </a>
         <div class="mt-6 lg:max-w-sm">
-          <p class="text-sm text-gray-800">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam.
-          </p>
-          <p class="mt-4 text-sm text-gray-800">
-            Eaque ipsa quae ab illo inventore veritatis et quasi architecto
-            beatae vitae dicta sunt explicabo.
-          </p>
-        </div>
-      </div>
-      <div class="space-y-2 text-sm">
-        <p class="text-base font-bold tracking-wide text-gray-900">Контакты</p>
-        <div class="flex">
-          <p class="mr-1 text-gray-800">Телефон:</p>
-          <a
-            href="tel:+79226686116"
-            aria-label="Our phone"
-            title="Our phone"
-            class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
-            >+7 (922) 668-61-16</a
-          >
-        </div>
-        <div class="flex">
-          <p class="mr-1 text-gray-800">Mail:</p>
-          <a
-            href="mailto:info@lorem.mail"
-            aria-label="Our email"
-            title="Our email"
-            class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
-            >info@lorem.mail</a
-          >
-        </div>
-        <div class="flex">
-          <p class="mr-1 text-gray-800">Адрес:</p>
           <a
             href="https://yandex.ru/maps/-/CHuLMJ1T"
             target="_blank"
@@ -73,10 +39,26 @@
             title="Our address"
             class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
           >
-            Карла Маркса 127 оф.402, Киров
+            г. Киров, ул. Карла Маркса 127 оф.402,
           </a>
+          <br />
+          <a
+            href="tel:+79226686116"
+            title="Our phone"
+            class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
+            >+7 (922) 668-61-16</a
+          >
+          <br />
+          <a
+            href="mailto:berkanalinen@gmail.com"
+            aria-label=""
+            title=""
+            class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
+            >berkanalinen@gmail.com</a
+          >
         </div>
       </div>
+
       <div>
         <span class="text-base font-bold tracking-wide text-gray-900"
           >Соцсети</span
@@ -114,43 +96,50 @@
             </svg>
           </a>
         </div>
-        <p class="mt-4 text-sm text-gray-500">
-          Bacon ipsum dolor amet short ribs pig sausage prosciutto chicken spare
-          ribs salami.
-        </p>
+      </div>
+      <div class="space-y-2 text-sm">
+        <p class="text-base font-bold tracking-wide text-gray-900">Полезное</p>
+        <div class="flex">
+          <NuxtLink
+            to="/delivery_and_payment"
+            class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
+          >
+            Доставка и оплата
+          </NuxtLink>
+        </div>
+        <div class="flex">
+          <NuxtLink
+            to="/exchange_and_refund"
+            class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
+          >
+            Обмен и возврат
+          </NuxtLink>
+        </div>
+        <div class="flex">
+          <NuxtLink
+            to="/exchange_and_refund"
+            class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
+          >
+            Оферта
+          </NuxtLink>
+        </div>
+        <div class="flex">
+          <a
+            href="/docs/policy_berkana.pdf"
+            target="_blank"
+            class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
+          >
+            Политика конфиденциальности
+          </a>
+        </div>
       </div>
     </div>
     <div
-      class="flex flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row"
+      class="flex flex-col-reverse justify-end pt-5 pb-10 border-t lg:flex-row"
     >
       <p class="text-sm text-gray-600">
-        © Copyright 2020 Lorem Inc. All rights reserved.
+        © Copyright 2025 Berkana. All rights reserved.
       </p>
-      <ul
-        class="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row"
-      >
-        <li>
-          <a
-            href="/"
-            class="text-sm text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400"
-            >F.A.Q</a
-          >
-        </li>
-        <li>
-          <a
-            href="/"
-            class="text-sm text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400"
-            >Privacy Policy</a
-          >
-        </li>
-        <li>
-          <a
-            href="/"
-            class="text-sm text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400"
-            >Terms &amp; Conditions</a
-          >
-        </li>
-      </ul>
     </div>
   </div>
 </template>

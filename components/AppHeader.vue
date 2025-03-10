@@ -9,8 +9,8 @@ const menu = [
     name: "О нас",
   },
   {
-    link: "/delivery",
-    name: "Доставка",
+    link: "/delivery_and_payment",
+    name: "Доставка и оплата",
   },
   {
     link: "/contacts",
@@ -35,7 +35,7 @@ const { cartQty } = inject("cartQty");
 <template>
   <header class="relative mb-10">
     <nav
-      class="nav md:flex mx-auto flex max-w-screen-2xl items-center justify-between p-6 lg:px-8"
+      class="nav md:flex mx-auto flex max-w-screen-3xl items-center justify-between p-6 lg:px-8"
     >
       <div class="flex lg:flex-1">
         <NuxtLink

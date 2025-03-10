@@ -56,7 +56,7 @@ const dropInCart = () => {
 
 <template>
   <div
-    class="flex max-w-[100%] flex-col lg:block product categories lg:max-w-screen-2xl p-6 lg:px-8"
+    class="flex max-w-[100%] flex-col lg:block product categories lg:max-w-screen-3xl p-6 lg:px-8"
   >
     <div class="box order-2 lg:w-1/2">
       <img

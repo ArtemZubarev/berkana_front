@@ -9,7 +9,7 @@ const { data } = useAsyncData<StrapiResponse>("products_popular", () =>
 </script>
 
 <template>
-  <div class="mx-auto max-w-screen-2xl p-6 lg:px-8">
+  <div class="mx-auto max-w-screen-3xl p-6 lg:px-8">
     <h2 class="text-4xl md:text-7xl mt-24 text-gray-800">Популярные товары</h2>
 
     <div
