@@ -33,7 +33,7 @@ const categoryLink = (slug) => {
 </script>
 
 <template>
-  <div class="mx-auto categories max-w-screen-3xl p-6 lg:px-8">
+  <div class="mx-auto categories max-w-screen-2xl p-6 lg:px-8">
     <h2 class="text-4xl md:text-4xl mt-10 text-gray-800">категории</h2>
     <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 lg:mt-4 gap-2">
       <NuxtLink

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="p-6 lg:px-8 pt-16 w-full mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:px-8 lg:mt-40"
+    class="p-6 lg:px-8 pt-16 w-full mx-auto sm:max-w-xl md:max-w-screen-2xl md:px-24 lg:px-8 lg:mt-40"
   >
     <div class="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
       <div class="sm:col-span-2">
@@ -116,12 +116,13 @@
           </NuxtLink>
         </div>
         <div class="flex">
-          <NuxtLink
-            to="/exchange_and_refund"
+          <a
+            href="/docs/oferta_berkana.pdf"
+            target="_blank"
             class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
           >
             Оферта
-          </NuxtLink>
+          </a>
         </div>
         <div class="flex">
           <a

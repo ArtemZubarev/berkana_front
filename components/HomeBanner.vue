@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mx-auto flex max-w-screen-3xl items-center justify-between py-0 px-2 lg:px-8 overflow-hidden relative"
+    class="mx-auto flex max-w-screen-2xl items-center justify-between py-0 px-2 lg:px-8 overflow-hidden relative"
   >
     <img class="banner-pic rounded-2xl" src="/public/girl.jpg" alt="" />
     <h1

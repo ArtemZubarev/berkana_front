@@ -101,7 +101,7 @@ watch(
 
 <template>
   <div
-    class="mx-auto max-w-screen-3xl items-center justify-between py-0 px-2 lg:px-8 overflow-hidden relative"
+    class="mx-auto max-w-screen-2xl items-center justify-between py-0 px-2 lg:px-8 overflow-hidden relative"
   >
     <h2 class="text-6xl">Каталог</h2>
     <div class="lg:flex gap-2">

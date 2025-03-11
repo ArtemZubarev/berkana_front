@@ -11,10 +11,7 @@ const baseUrl = config.public.baseURL;
 
 const picture = `${baseUrl}${product.preview.formats[size].url}`;
 const linkUrl = `/products/${product.documentId}`;
-const hideText = size == "thumbnail" || size == "small";
-// const hasSale = computed(() => {
-//   return !!find(() => !!prop("discount_price") !== null)(product.price);
-// });
+const smallCard = size == "thumbnail" || size == "small";
 
 const hasSale = computed(() => {
   return any(
@@ -32,24 +29,42 @@ const isNew = computed(() => product.is_new);
 <template>
   <NuxtLink :to="linkUrl" class="card">
     <div
-      class="relative img-container rounded-2xl overflow-hidden lg:h-[495px]"
+      :class="[
+        'relative',
+        'img-container',
+        'rounded-2xl',
+        'overflow-hidden',
+        ...[smallCard ? 'lg:h-[220px]' : 'lg:h-[495px]'],
+      ]"
     >
       <img class="productPhoto" :src="picture" alt="" />
       <div class="absolute top-4 right-4 flex gap-2">
         <span
           v-if="isNew"
           class="bg-green-300 px-2 rounded-md text-white font-thin text-sm"
-          >NEW</span
         >
+          NEW
+        </span>
         <span
           v-if="hasSale"
           class="bg-red-400 px-2 rounded-md text-white font-thin text-sm"
-          >SALE</span
         >
+          SALE
+        </span>
       </div>
     </div>
-    <div v-if="!hideText" class="info flex justify-between mt-4">
-      <div class="name font-medium">{{ product.name }}</div>
+    <div
+      :class="[
+        'info',
+        'flex',
+        'justify-between',
+        'mt-4',
+        ...[smallCard ? 'flex-col' : ''],
+      ]"
+    >
+      <div :class="['name', 'font-medium']">
+        {{ product.name }}
+      </div>
       <div class="price font-thin">
         {{ product.price[0].price }} <span>р.</span>
       </div>

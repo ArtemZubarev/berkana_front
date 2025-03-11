@@ -58,7 +58,7 @@ const updateQtty = (id: string, size: string, qty: number) => {
 
 <template>
   <div
-    class="cart mx-auto max-w-screen-3xl items-center justify-between py-0 px-2 lg:px-8 overflow-hidden relative"
+    class="cart mx-auto max-w-screen-2xl items-center justify-between py-0 px-2 lg:px-8 overflow-hidden relative"
   >
     <h1 class="text-6xl">Корзина</h1>
 

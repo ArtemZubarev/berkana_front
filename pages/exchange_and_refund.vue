@@ -2,7 +2,7 @@
 
 <template>
   <div
-    class="mx-auto max-w-screen-3xl items-center justify-between py-0 px-2 lg:px-8 overflow-hidden relative"
+    class="mx-auto max-w-screen-2xl items-center justify-between py-0 px-2 lg:px-8 overflow-hidden relative"
   >
     <h2 class="text-6xl">Обмен и возврат</h2>
     <p class="text-md w-3/4 text-gray-500 mb-4 mt-10">
