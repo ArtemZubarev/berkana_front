@@ -72,16 +72,6 @@ const form = reactive({
       />
     </div>
     <slot />
-    <p class="disclaimer text-sm text-gray-400 mt-4">
-      Нажимая на кнопку, вы даёте согласие на обработку персональных данных и<br />
-      соглашаетесь с{{ " " }}
-      <a
-        class="text-gray-700 underline hover:opacity-70"
-        target="_blank"
-        href="/docs/policy_berkana.pdf"
-        >политикой конфиденциальности</a
-      >
-    </p>
   </form>
 </template>
 <style>

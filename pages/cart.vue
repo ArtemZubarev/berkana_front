@@ -35,7 +35,9 @@ const findProduct = (id: string | number) => {
   return {};
 };
 
-const cartIsEmpty = computed(() => Object.keys(cart.value).length === 0);
+const cartIsEmpty = computed(() =>
+  cart && cart.value ? Object.keys(cart.value).length === 0 : true
+);
 const totalSum = computed(() => {
   if (cartIsEmpty.value) {
     return 0;
@@ -104,6 +106,24 @@ const updateQtty = (id: string, size: string, qty: number) => {
             <nuxt-icon name="card" class="card" />
             Перейти к оплате
           </button>
+          <p class="disclaimer text-sm text-gray-400 mt-4">
+            Нажимая на кнопку, вы даёте согласие на обработку персональных
+            данных,<br />
+            соглашаетесь с{{ " " }}
+            <a
+              class="text-gray-700 underline hover:opacity-70"
+              target="_blank"
+              href="/docs/policy_berkana.pdf"
+              >политикой конфиденциальности</a
+            >
+            и
+            <a
+              class="text-gray-700 underline hover:opacity-70"
+              target="_blank"
+              href="/docs/oferta_berkana.pdf"
+              >офертой</a
+            >.
+          </p>
         </div>
       </CartDelivery>
     </div>

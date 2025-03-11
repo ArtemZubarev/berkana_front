@@ -12,10 +12,10 @@ const menu = [
     link: "/delivery_and_payment",
     name: "Доставка и оплата",
   },
-  {
-    link: "/contacts",
-    name: "Контакты",
-  },
+  // {
+  //   link: "/contacts",
+  //   name: "Контакты",
+  // },
   {
     link: "/catalog?sale=true",
     name: "SALE",
