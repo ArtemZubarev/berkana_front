@@ -56,6 +56,10 @@
             class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >berkanalinen@gmail.com</a
           >
+          <br />
+          <br />
+
+          <br />
         </div>
       </div>
 
@@ -136,11 +140,14 @@
       </div>
     </div>
     <div
-      class="flex flex-col-reverse justify-end pt-5 pb-10 border-t lg:flex-row"
+      class="flex flex-col-reverse justify-between items-center pt-5 pb-10 border-t lg:flex-row"
     >
-      <p class="text-sm text-gray-600">
-        © Copyright 2025 Berkana. All rights reserved.
+      <p>
+        <span class="opacity-40">ОГРНИП: 319435000008119</span>
+        <br />
+        <span class="opacity-40">ИНН: 433901434908</span>
       </p>
+      <p class="text-sm text-gray-600">© Copyright 2025 Berkana</p>
     </div>
   </div>
 </template>
