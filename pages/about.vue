@@ -1,3 +1,15 @@
+<script setup lang="ts">
+useHead({
+  title: "Berkana | О нас",
+  meta: [
+    {
+      name: "description",
+      content: ``,
+    },
+  ],
+});
+</script>
+
 <template>
   <div
     class="cart mx-auto max-w-screen-2xl items-center justify-between py-0 px-2 lg:px-8 overflow-hidden relative"

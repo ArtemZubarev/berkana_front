@@ -1,4 +1,13 @@
 <script setup lang="ts">
+useHead({
+  title: "Berkana | Корзина",
+  meta: [
+    {
+      name: "description",
+      content: ``,
+    },
+  ],
+});
 import { find, propEq } from "rambda";
 import type { StrapiResponse } from "~/composables/useStrapi";
 import cartSum from "~/utils/cartSum";

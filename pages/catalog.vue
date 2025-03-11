@@ -1,4 +1,13 @@
 <script setup lang="ts">
+useHead({
+  title: "Berkana | Каталог",
+  meta: [
+    {
+      name: "description",
+      content: ``,
+    },
+  ],
+});
 import type { StrapiResponse } from "~/composables/useStrapi";
 
 const config = useRuntimeConfig();

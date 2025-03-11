@@ -1,4 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useHead({
+  title: "Berkana | Обмен и возврат",
+  meta: [
+    {
+      name: "description",
+      content: ``,
+    },
+  ],
+});
+</script>
 
 <template>
   <div

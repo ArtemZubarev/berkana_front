@@ -1,4 +1,13 @@
 <script setup lang="ts">
+useHead({
+  title: "Berkana",
+  meta: [
+    {
+      name: "description",
+      content: ``,
+    },
+  ],
+});
 import { find, pathOr, propEq } from "rambda";
 import { toast } from "vue3-toastify";
 import type { StrapiResponse } from "~/composables/useStrapi";
