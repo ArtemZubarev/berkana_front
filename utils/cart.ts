@@ -63,3 +63,25 @@ export const countItemsInCart = () => {
 
   return counter;
 };
+
+export const cartToOrderForm = (products: any) => {
+  const cart = getCart();
+  const result: any = [];
+
+  Object.keys(cart).forEach((id: string, index: number) => {
+    const product: any = find(propEq(id, "documentId"))(products);
+
+    Object.keys(cart[id]).forEach((subId: string, subIndex: number) => {
+      const price: any = find(propEq(subId, "size"))(product.price);
+
+      result.push({
+        name: product.name,
+        size: subId,
+        price: price.discount_price ? price.discount_price : price.price,
+        productId: product.documentId,
+        quantity: cart[id][subId].quantity,
+      });
+    });
+  });
+  return result;
+};

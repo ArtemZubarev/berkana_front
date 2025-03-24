@@ -47,8 +47,6 @@ const discountPrice = computed(() => {
 const { cartQty, refreshQty } = inject("cartQty") as any;
 
 const isInCart = computed(() => {
-  console.log(cartQty.value);
-
   return cartHasId(id as string, currentSize.value);
 });
 
@@ -69,28 +67,9 @@ const dropInCart = () => {
   >
     <div class="box order-2 lg:w-1/2">
       <img
+        v-for="photo in data.data.media"
+        :src="`${baseUrl}${photo.formats.medium.url}`"
         class=""
-        :src="`${baseUrl}${data.data.preview.formats.medium.url}`"
-        alt=""
-      />
-      <img
-        class=""
-        :src="`${baseUrl}${data.data.preview.formats.medium.url}`"
-        alt=""
-      />
-      <img
-        class=""
-        :src="`${baseUrl}${data.data.preview.formats.medium.url}`"
-        alt=""
-      />
-      <img
-        class=""
-        :src="`${baseUrl}${data.data.preview.formats.medium.url}`"
-        alt=""
-      />
-      <img
-        class=""
-        :src="`${baseUrl}${data.data.preview.formats.medium.url}`"
         alt=""
       />
     </div>
